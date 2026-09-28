@@ -37,6 +37,6 @@ public class ClienteRepositorioTests {
 
         assertNotNull(clientes);
         assertEquals(5, clientes.size());
-        assertTrue(clientes.stream().anyMatch(c -> c.getNome().equals("Mariana")));
+        assertTrue(clientes.stream().anyMatch(c -> c.getNome().equals("Mariana Costa")));
     }
 }

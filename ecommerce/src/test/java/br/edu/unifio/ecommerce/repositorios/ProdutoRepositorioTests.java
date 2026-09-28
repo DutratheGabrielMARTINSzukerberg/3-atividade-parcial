@@ -1,8 +1,6 @@
 package br.edu.unifio.ecommerce.repositorios;
 
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import br.edu.unifio.ecommerce.entidades.Produto;
 
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProdutoRepositorioTests {
 
     @Autowired
@@ -23,13 +20,14 @@ public class ProdutoRepositorioTests {
 
     @Test
     public void deveBuscarUmProdutoPorId() {
-        Optional<Produto> produtoOptional = produtoRepositorio.findById(1);
+        Optional<Produto> opt = produtoRepositorio.findById(1);
 
-        assertTrue(produtoOptional.isPresent());
+        assertTrue(opt.isPresent());
 
-        Produto produto = produtoOptional.get();
+        Produto produto = opt.get();
         assertEquals("Calça Baggy Streetwear", produto.getNome());
         assertEquals(0, produto.getPreco().compareTo(new BigDecimal("189.90")));
+        assertEquals((short) 35, produto.getEstoque());
     }
 
     @Test
@@ -38,16 +36,18 @@ public class ProdutoRepositorioTests {
 
         assertNotNull(produtos);
         assertEquals(5, produtos.size());
+        assertTrue(produtos.stream().anyMatch(p -> p.getNome().equals("Fone Over-Ear Bluetooth")));
     }
 
     @Test
     public void produtoDeveEstarRelacionadoComSuaCategoria() {
-        Optional<Produto> produtoOptional = produtoRepositorio.findById(1);
+        Optional<Produto> opt = produtoRepositorio.findById(1);
 
-        assertTrue(produtoOptional.isPresent());
-        Produto produto = produtoOptional.get();
+        assertTrue(opt.isPresent());
+        Produto produto = opt.get();
 
         assertNotNull(produto.getCategoria());
         assertEquals("Roupas & Moda", produto.getCategoria().getNome());
+        assertEquals("Vestuário urbano, calçados e acessórios", produto.getCategoria().getDescricao());
     }
 }

@@ -1,22 +1,17 @@
 package br.edu.unifio.ecommerce.repositorios;
 
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import br.edu.unifio.ecommerce.entidades.Categoria;
 
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CategoriaRepositorioTests {
 
     @Autowired
@@ -24,12 +19,11 @@ public class CategoriaRepositorioTests {
 
     @Test
     public void deveBuscarUmaCategoriaPorId() {
-        Optional<Categoria> categoriaOptional = categoriaRepositorio.findById(Short.parseShort("2"));
+        Optional<Categoria> opt = categoriaRepositorio.findById((short) 1);
 
-        assertTrue(categoriaOptional.isPresent());
+        assertTrue(opt.isPresent());
 
-
-        Categoria categoria = categoriaOptional.get();
+        Categoria categoria = opt.get();
         assertEquals("Roupas & Moda", categoria.getNome());
         assertEquals("Vestuário urbano, calçados e acessórios", categoria.getDescricao());
     }
@@ -40,5 +34,6 @@ public class CategoriaRepositorioTests {
 
         assertNotNull(categorias);
         assertEquals(5, categorias.size());
+        assertTrue(categorias.stream().anyMatch(c -> c.getNome().equals("Informática")));
     }
 }

@@ -28,7 +28,7 @@ public class PedidoRepositorioTests {
         assertTrue(pedidoOptional.isPresent());
 
         Pedido pedido = pedidoOptional.get();
-        assertEquals("Enviado", pedido.getStatus());
+        assertEquals("Entregue", pedido.getStatus());
         assertEquals(0, pedido.getValorTotal().compareTo(new BigDecimal("189.90")));
     }
 
