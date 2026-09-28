@@ -22,9 +22,22 @@ INSERT INTO cliente (nome, email, telefone) VALUES ('Beatriz Souza', 'beatriz.so
 INSERT INTO cliente (nome, email, telefone) VALUES ('Rafael Mendes', 'rafael.mendes@email.com', '(13) 99210-9876');
 
 -- Pedidos
-INSERT INTO pedido (data, status, valor_Total, cliente_id) VALUES ('2026-03-15', 'Entregue', 189.90, 1);
-INSERT INTO pedido (data, status, valor_Total, cliente_id) VALUES ('2026-04-02', 'Processando', 349.90, 2);
+INSERT INTO pedido (data, status, valor_Total, cliente_id) VALUES ('2026-04-17', 'Entregue', 189.90, 1);
+INSERT INTO pedido (data, status, valor_Total, cliente_id) VALUES ('2026-04-17', 'Processando', 299.90, 2);
+INSERT INTO pedido (data, status, valor_total, cliente_id) values ('2016-04-17 18:45:00', 'Processando', 149.90, 3);
+INSERT INTO pedido (data, status, valor_total, cliente_id) values ('2026-04-17 16:45:00', 'Entregue', 349.90, 4);
+INSERT INTO pedido (data, status, valor_total, cliente_id) values ('2026-04-17 11:20:00', 'Pendente', 42.90, 5);
 
 -- Itens do Pedido
 INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) VALUES (1, 189.90, 1, 1);
-INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) VALUES (1, 349.90, 2, 4);
+INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) VALUES (1, 299.90, 2, 4);
+INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) values (1, 149.90, 3, 3);
+INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) values (1, 349.90, 4, 4);
+INSERT INTO item_pedido (quantidade, valor_unitario, pedido_id, produto_id) values (1, 42.90, 5, 5);
+
+--Pagamento
+INSERT INTO pagamento (valor, data, status, tipo, pedido_id) values (189.90, '2026-04-18 09:00:00', 'Pago', 'Cartão de Crédito', 1);
+INSERT INTO pagamento (valor, data, status, tipo, pedido_id) values (299.90, '2026-04-18 21:30:00', 'Pago', 'Boleto', 2);
+INSERT INTO pagamento (valor, data, status, tipo, pedido_id) values (149.90, '2026-04-18 22:15:00', 'Pendente', 'Pix', 3);
+INSERT INTO pagamento (valor, data, status, tipo, pedido_id) values (349.90, '2026-04-18 12:00:00', 'Pago', 'Cartão de Débito', 4);
+INSERT INTO pagamento (valor, data, status, tipo, pedido_id) values (42.90, '2026-04-18 23:35:00', 'Pago', 'Cartão de Crédito', 5);
